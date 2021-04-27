@@ -1,0 +1,12 @@
+
+version: "3.7"
+services:
+  sklep:
+    image: achrzanowska/ebiznes
+    stdin_open: true
+    #tty: true
+    volumes:
+      - ./:/home/newuser/sklep
+    ports:
+      - 3000:3000   # react
+      - 9000:9000   # scala play

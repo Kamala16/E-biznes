@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 
-WORKDIR /cwiczenia
+WORKDIR /root
 
-VOLUME ["/cwiczenia/exchg"]
+VOLUME ["/home/newuser"]
 
 RUN apt-get update && apt-get upgrade -y &&\
     apt-get install -y openjdk-8-jdk npm vim
@@ -22,6 +22,8 @@ RUN curl -L -o scala.tgz "https://downloads.lightbend.com/scala/2.12.13/scala-2.
     rm scala.tgz
 
 ENV PATH=/usr/share/local/scala-2.12.13/bin:${PATH}
+
+WORKDIR /home/newuser
 
 EXPOSE 3000
 EXPOSE 9000
