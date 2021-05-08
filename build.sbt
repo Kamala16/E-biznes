@@ -10,4 +10,7 @@ resolvers += "Akka Snapshot Repository" at "https://repo.akka.io/snapshots/"
 scalaVersion := "2.12.13"
 
 libraryDependencies ++= Seq( jdbc , ehcache , ws , specs2 % Test , guice )
-      
+
+libraryDependencies += "com.typesafe.play" %% "play-slick" % "5.0.0" // orm
+
+libraryDependencies += "com.typesafe.play" %% "play-slick-evolutions" % "5.0.0" // migracje bazy danych
