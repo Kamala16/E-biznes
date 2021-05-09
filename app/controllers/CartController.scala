@@ -1,11 +1,12 @@
 package controllers
 
 import play.api.mvc._
+import repositories.CartRepo
 
 import javax.inject._
 
 @Singleton
-class CartController @Inject()(cc: ControllerComponents) extends AbstractController(cc) {
+class CartController @Inject()(cartRepo: CartRepo, cc: ControllerComponents) extends AbstractController(cc) {
   def index(): Action[AnyContent] = Action {
     Ok("cart list")
   }
