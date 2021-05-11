@@ -8,9 +8,10 @@ import scala.concurrent.{ExecutionContext, Future}
 import slick.jdbc.JdbcProfile
 
 @Singleton
-class CartRepo @Inject() (dbConfigProvider: DatabaseConfigProvider)(implicit ec: ExecutionContext) {
+class CartRepo @Inject() (dbConfigProvider: DatabaseConfigProvider)(implicit
+    ec: ExecutionContext
+) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
-
 
   import dbConfig._
   import profile.api._
@@ -20,26 +21,42 @@ class CartRepo @Inject() (dbConfigProvider: DatabaseConfigProvider)(implicit ec:
     def userId = column[Int]("userId")
     def productId = column[Int]("productId")
     def discountId = column[Int]("discountId")
-    def price = column[Double]("price")
-    def * = (id, userId, productId, discountId, price) <> (Cart.tupled, Cart.unapply)
+    def price = column[Int]("price")
+    def * =
+      (
+        id,
+        userId,
+        productId,
+        discountId,
+        price
+      ) <> ((Cart.apply _).tupled, Cart.unapply)
   }
 
   val carts = TableQuery[CartTable]
 
-  def create(userId: Int, productId: Int, discountId: Int, price: Double): Future[Cart] = db.run {
-    (carts.map(c => (c.userId, c.productId, c.discountId, c.price))
-      returning carts.map(_.id)
-      into ((params, id) => Cart(id, params._1, params._2, params._3, params._4))
-      ) +=(userId, productId, discountId, price)
-  }
+  def create(
+      userId: Int,
+      productId: Int,
+      discountId: Int,
+      price: Int
+  ): Future[Cart] =
+    db.run {
+      (carts.map(c => (c.userId, c.productId, c.discountId, c.price))
+        returning carts.map(_.id)
+        into ((params, id) =>
+          Cart(id, params._1, params._2, params._3, params._4)
+        )) += (userId, productId, discountId, price)
+    }
 
-  def get(id: Int): Future[Option[Cart]] = db.run {
-    carts.filter(_.id === id).result.headOption
-  }
+  def get(id: Int): Future[Option[Cart]] =
+    db.run {
+      carts.filter(_.id === id).result.headOption
+    }
 
-  def list(): Future[Seq[Cart]] = db.run {
-    carts.result
-  }
+  def list(): Future[Seq[Cart]] =
+    db.run {
+      carts.result
+    }
 
   def update(id: Int, new_carts: Cart): Future[Int] = {
     val updateCart: Cart = new_carts.copy(id)

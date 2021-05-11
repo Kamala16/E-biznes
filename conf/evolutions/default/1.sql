@@ -4,7 +4,7 @@ CREATE TABLE "cart"
     "userId"        INTEGER NOT NULL,
     "productId"       INTEGER NOT NULL,
     "discountId"    INTEGER NOT NULL,
-    "price"         DOUBLE NOT NULL
+    "price"         INTEGER NOT NULL
 );
 
 CREATE TABLE "category"
