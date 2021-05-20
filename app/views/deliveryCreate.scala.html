@@ -1,0 +1,15 @@
+@import models.Delivery
+@(delivery: Form[CreateDeliveryForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.DeliveryController.createDeliveryHandler()) {
+    @helper.CSRF.formField
+    @inputText(delivery("name"))
+
+    <div class="buttons">
+        <input type="submit" value="Add Delivery"/>
+    </div>
+}

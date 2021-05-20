@@ -1,11 +1,11 @@
-@import controllers.CreateCartForm
+@import models.Cart
 @(cart: Form[CreateCartForm])(implicit request: MessagesRequestHeader, flash: Flash)
 
 @import helper._
 
 @flash.get("success").getOrElse("")
 
-@form(controllers.routes.CartController.createCartHandle()) {
+@form(controllers.routes.CartController.createCartHandler()) {
     @helper.CSRF.formField
     @inputText(cart("userId"))
     @inputText(cart("productId"))
@@ -13,6 +13,6 @@
     @inputText(cart("price"))
 
     <div class="buttons">
-        <input type="submit" value="Add Category"/>
+        <input type="submit" value="Add Cart"/>
     </div>
 }

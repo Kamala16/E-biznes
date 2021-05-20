@@ -1,6 +1,6 @@
 package models
 
-import play.api.libs.json.OFormat
+import play.api.libs.json.{Json, OFormat}
 
 case class User(
     id: Int,
@@ -11,5 +11,5 @@ case class User(
 )
 
 object User {
-  implicit val format: OFormat[User] = OFormat[User]
+  implicit val format: OFormat[User] = Json.format[User]
 }

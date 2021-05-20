@@ -16,7 +16,7 @@ class CartRepo @Inject() (dbConfigProvider: DatabaseConfigProvider)(implicit
   import dbConfig._
   import profile.api._
 
-  class CartTable(tag: Tag) extends Table[Cart](tag, _tableName = "Cart") {
+  class CartTable(tag: Tag) extends Table[Cart](tag, "cart") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
     def userId = column[Int]("userId")
     def productId = column[Int]("productId")

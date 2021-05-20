@@ -1,0 +1,8 @@
+@(product: Seq[Product])
+
+@for(product <- product) {
+    <strong>@product.id</strong>
+    <a href="@controllers.routes.ProductController.update(product.id)">Edit</a>
+    <a href="@controllers.routes.ProductController.delete(product.id)">Delete</a>
+    <br>
+}

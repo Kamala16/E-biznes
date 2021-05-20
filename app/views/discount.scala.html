@@ -1,0 +1,8 @@
+@(discount: Seq[Discount])
+
+@for(discount <- discount) {
+    <strong>@discount.id</strong>
+    <a href="@controllers.routes.DiscountController.update(discount.id)">Edit</a>
+    <a href="@controllers.routes.DiscountController.delete(discount.id)">Delete</a>
+    <br>
+}

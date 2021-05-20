@@ -1,0 +1,8 @@
+@(promotion: Seq[Promotion])
+
+@for(promotion <- promotion) {
+    <strong>@promotion.id</strong>
+    <a href="@controllers.routes.PromotionController.update(promotion.id)">Edit</a>
+    <a href="@controllers.routes.PromotionController.delete(promotion.id)">Delete</a>
+    <br>
+}

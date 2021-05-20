@@ -1,0 +1,17 @@
+@import controllers.UpdatePromotionForm
+@(promotion: Form[UpdatePromotionForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.PromotionController.updatePromotionHandler) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@promotion("id").value" type="hidden" />
+    @inputText(promotion("name"))
+
+
+    <div class="buttons">
+        <input type="submit" value="Update Promotion"/>
+    </div>
+}

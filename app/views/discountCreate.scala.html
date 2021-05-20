@@ -1,0 +1,15 @@
+@import models.Discount
+@(discount: Form[CreateDiscountForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.DiscountController.createDiscountHandler()) {
+    @helper.CSRF.formField
+    @inputText(discount("value"))
+
+    <div class="buttons">
+        <input type="submit" value="Add Discount"/>
+    </div>
+}

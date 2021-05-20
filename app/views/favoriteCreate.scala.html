@@ -1,0 +1,16 @@
+@import models.Favorite
+@(favorite: Form[CreateFavoriteForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.FavoriteController.createFavoriteHandler()) {
+    @helper.CSRF.formField
+    @inputText(favorite("userId"))
+    @inputText(favorite("productId"))
+
+    <div class="buttons">
+        <input type="submit" value="Add Favorite"/>
+    </div>
+}

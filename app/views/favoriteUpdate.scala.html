@@ -1,0 +1,17 @@
+@import controllers.UpdateFavoriteForm
+@(favorite: Form[UpdateFavoriteForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.FavoriteController.updateFavoriteHandler) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@favorite("id").value" type="hidden" />
+    @inputText(favorite("name"))
+
+
+    <div class="buttons">
+        <input type="submit" value="Update Favorite"/>
+    </div>
+}

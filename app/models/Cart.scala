@@ -1,6 +1,6 @@
 package models
 
-import play.api.libs.json.OFormat
+import play.api.libs.json.{Json, OFormat}
 
 case class Cart(
     id: Int,
@@ -11,5 +11,5 @@ case class Cart(
 )
 
 object Cart {
-  implicit val format: OFormat[Cart] = OFormat[Cart]
+  implicit val format: OFormat[Cart] = Json.format[Cart]
 }

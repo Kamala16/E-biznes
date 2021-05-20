@@ -1,0 +1,17 @@
+@import controllers.UpdateRateForm
+@(rate: Form[UpdateRateForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.RateController.updateRateHandler) {
+    @helper.CSRF.formField
+    <input name="id" id="id" value="@rate("id").value" type="hidden" />
+    @inputText(rate("name"))
+
+
+    <div class="buttons">
+        <input type="submit" value="Update Rate"/>
+    </div>
+}

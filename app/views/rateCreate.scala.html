@@ -1,0 +1,17 @@
+@import models.Rate
+@(rate: Form[CreateRateForm])(implicit request: MessagesRequestHeader, flash: Flash)
+
+@import helper._
+
+@flash.get("success").getOrElse("")
+
+@form(controllers.routes.RateController.createRateHandler()) {
+    @helper.CSRF.formField
+    @inputText(rate("userId"))
+    @inputText(rate("productId"))
+    @inputText(rate("value"))
+
+    <div class="buttons">
+        <input type="submit" value="Add Rate"/>
+    </div>
+}

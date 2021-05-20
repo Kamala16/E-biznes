@@ -1,0 +1,8 @@
+@(rate: Seq[Rate])
+
+    @for(rate <- rate) {
+        <strong>@rate.id</strong>
+        <a href="@controllers.routes.RateController.update(rate.id)">Edit</a>
+        <a href="@controllers.routes.RateController.delete(rate.id)">Delete</a>
+        <br>
+    }

@@ -1,0 +1,8 @@
+@(delivery: Seq[Delivery])
+
+@for(delivery <- delivery) {
+    <strong>@delivery.id</strong>
+    <a href="@controllers.routes.DeliveryController.update(delivery.id)">Edit</a>
+    <a href="@controllers.routes.DeliveryController.delete(delivery.id)">Delete</a>
+    <br>
+}
