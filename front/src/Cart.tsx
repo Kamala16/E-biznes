@@ -1,45 +1,50 @@
 import {Component} from "react";
+import getData from "./utils";
 
-class Cart extends Component {
+interface Cart {
+    id: number
+    userId: number
+    productId: number
+    discountId: number
+    price: number
+}
 
-    constructor() {
-        // @ts-ignore
-        super();
+interface CartState {
+    carts: Cart[]
+}
+
+interface CartProps {}
+
+class Cart extends Component<CartProps, CartState> {
+
+    constructor(props: CartProps) {
+        super(props);
         this.state = {
             carts: [],
         };
     }
 
-    componentDidMount() {
-        var url = "http://localhost:9000/cart"
+    async componentDidMount() {
+        var url = "http://localhost:9000/api/Cart"
 
-        fetch(url, {
-            mode: 'cors',
-            headers: {
-                'Accept' : 'application/json',
-                'Content-type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000',
-            },
-            method: 'GET',
-        }).then(results => {
-            return results.json();
-        }).then(data => {
-            let carts = data.map(() => {
-                return ( "KOSZYK"
-                    // <div key={prod.id}>
-                    //     <div className="title">{prod.id}</div>
-                    // </div>
-                )
-            })
-            this.setState({carts: carts})
-        })
+        const data: Cart[] = await getData(url, "GET")
+        console.log(data)
+        this.setState({carts: data})
     }
 
     render() {
-        return ("KOSZYK 2"
-            // <div className="products">
-            //     {this.state.products}
-            // </div>
+        return (
+            <div className="carts">
+                {this.state.carts.map((cart, index) => (
+                    <div key={index}>
+                        <ul>
+                            <li>
+                                <h4>{cart.id}</h4>
+                            </li>
+                        </ul>
+                    </div>
+                ))}
+            </div>
         )
     }
 }
