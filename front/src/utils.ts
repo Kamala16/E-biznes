@@ -1,4 +1,4 @@
-export default async function getData(url: string, method: string, data?: JSON) {
+export default async function getData(url: string, method: string, data?: object) {
     const result = await fetch(url, {
         mode: 'cors',
         headers: {

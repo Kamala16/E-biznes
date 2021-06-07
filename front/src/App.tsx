@@ -12,6 +12,16 @@ import Product from "./Product";
 import Promotion from "./Promotion";
 import Rate from "./Rate";
 import User from "./User";
+import CartForm from "./CartForm";
+import CategoryForm from "./CategoryForm";
+import DeliveryForm from "./DeliveryForm";
+import DiscountForm from "./DiscountForm";
+import FavoriteForm from "./FavoriteForm";
+import PaymentForm from "./PaymentForm";
+import ProductForm from "./ProductForm";
+import PromotionForm from "./PromotionForm";
+import RateForm from "./RateForm";
+import UserForm from "./UserForm";
 
 
 function App() {
@@ -43,6 +53,17 @@ function App() {
           <Route path="/promotion" component={Promotion}/>
           <Route path="/rate" component={Rate}/>
           <Route path="/user" component={User}/>
+
+          <Route path="/addCart" component={CartForm}/>
+          <Route path="/addCategory" component={CategoryForm}/>
+          <Route path="/addDelivery" component={DeliveryForm}/>
+          <Route path="/addDiscount" component={DiscountForm}/>
+          <Route path="/addFavorite" component={FavoriteForm}/>
+          <Route path="/addPayment" component={PaymentForm}/>
+          <Route path="/addProduct" component={ProductForm}/>
+          <Route path="/addPromotion" component={PromotionForm}/>
+          <Route path="/addRate" component={RateForm}/>
+          <Route path="/addUser" component={UserForm}/>
         </BrowserRouter>
       </div>
     </div>

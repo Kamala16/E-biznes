@@ -1,6 +1,5 @@
 import {Component} from "react";
 import getData from "./utils";
-import Product from "./Product";
 
 interface Promotion {
     id: number
@@ -8,8 +7,17 @@ interface Promotion {
     value: number
 }
 
+interface Product {
+    id: number
+    categoryId: number
+    rateId: number
+    promotionId: number
+    price: number
+}
+
 interface PromotionState {
     promotions: Promotion[]
+    products: Product[]
 }
 
 interface PromotionProps {}
@@ -20,6 +28,7 @@ class Promotion extends Component<PromotionProps,PromotionState> {
         super(props);
         this.state = {
             promotions: [],
+            products: []
         };
     }
 
@@ -39,7 +48,8 @@ class Promotion extends Component<PromotionProps,PromotionState> {
                         <ul>
                             <li>
                                 <h4>{promotion.id}</h4>
-                                {promotion.productId}
+                                <p>{promotion.productId}</p>
+                                <p>Value: {promotion.value}</p>
                             </li>
                         </ul>
                     </div>

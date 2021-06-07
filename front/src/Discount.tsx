@@ -37,7 +37,7 @@ class Discount extends Component<DiscountProps, DiscountState> {
                         <ul>
                             <li>
                                 <h4>{discount.id}</h4>
-                                {discount.value}
+                                <p>{discount.value}</p>
                             </li>
                         </ul>
                     </div>

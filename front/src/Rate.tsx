@@ -1,6 +1,5 @@
 import {Component} from "react";
 import getData from "./utils";
-import Product from "./Product";
 
 interface Rate {
     id: number
@@ -9,8 +8,26 @@ interface Rate {
     value: number
 }
 
+interface User {
+    id: number
+    favoriteId: number
+    name: String
+    email: String
+    password: String
+}
+
+interface Product {
+    id: number
+    categoryId: number
+    rateId: number
+    promotionId: number
+    price: number
+}
+
 interface RateState {
     rates: Rate[]
+    users: User[]
+    products: Product[]
 }
 
 interface RateProps {}
@@ -21,6 +38,8 @@ class Rate extends Component<RateProps,RateState> {
         super(props);
         this.state = {
             rates: [],
+            users: [],
+            products: []
         };
     }
 
@@ -32,6 +51,17 @@ class Rate extends Component<RateProps,RateState> {
         this.setState({rates: data})
     }
 
+    getUserName(userId: number): String {
+        let user = this.state.users.find(u => {
+            return u.id === userId
+        })
+        if (user) {
+            return user.name
+        } else {
+            return "No user"
+        }
+    }
+
     render() {
         return (
             <div className="rates">
@@ -40,7 +70,9 @@ class Rate extends Component<RateProps,RateState> {
                         <ul>
                             <li>
                                 <h4>{rate.productId}</h4>
-                                {rate.value}
+                                <p>{rate.value}</p>
+                                <p>User: {this.getUserName(rate.userId)}</p>
+                                <p>Product: {rate.productId}</p>
                             </li>
                         </ul>
                     </div>

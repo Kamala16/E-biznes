@@ -38,7 +38,7 @@ class Payment extends Component<PaymentProps, PaymentState> {
                         <ul>
                             <li>
                                 <h4>{payment.id}</h4>
-                                {payment.name}
+                                <p>{payment.name}</p>
                             </li>
                         </ul>
                     </div>

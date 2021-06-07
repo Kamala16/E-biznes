@@ -41,8 +41,8 @@ class User extends Component<UserProps,UserState> {
                         <ul>
                             <li>
                                 <h4>{user.name}</h4>
-                                {user.email}
-                                {user.password}
+                                <p>{user.email}</p>
+                                <p>{user.password}</p>
                             </li>
                         </ul>
                     </div>

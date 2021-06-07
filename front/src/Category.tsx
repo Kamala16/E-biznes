@@ -7,8 +7,17 @@ interface Category {
     name: string
 }
 
+interface Product {
+    id: number
+    categoryId: number
+    rateId: number
+    promotionId: number
+    price: number
+}
+
 interface CategoryState {
     categories: Category[]
+    products: Product[]
 }
 
 interface CategoryProps {
@@ -20,6 +29,7 @@ class Category extends Component<CategoryProps, CategoryState> {
         super(props);
         this.state = {
             categories: [],
+            products: []
         };
     }
 
@@ -39,6 +49,7 @@ class Category extends Component<CategoryProps, CategoryState> {
                         <ul>
                             <li>
                                 <h4>{category.id}</h4>
+                                <h4>{category.name}</h4>
                             </li>
                         </ul>
                     </div>
